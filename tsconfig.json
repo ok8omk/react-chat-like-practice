@@ -10,6 +10,7 @@
     "baseUrl": "./",
     "paths": {
       "components/*": ["components/*"],
+      "hooks/*": ["hooks/*"],
       "styles": ["styles/index.ts"],
       "types": ["types/index.ts"]
     }

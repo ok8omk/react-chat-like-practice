@@ -4,6 +4,7 @@ import { Colors } from "styles";
 
 type Props = {
   label: string;
+  name: string;
 } & React.ComponentPropsWithoutRef<"input">;
 
 const Container = styled.label`
@@ -14,10 +15,10 @@ const Container = styled.label`
   padding: 4px 8px;
 `;
 
-export const RadioButton: React.FC<Props> = ({ label, ...props }) => {
+export const RadioButton: React.FC<Props> = ({ label, name, ...props }) => {
   return (
     <Container>
-      <input {...props} type="radio" />
+      <input {...props} name={name} type="radio" />
       {label}
     </Container>
   );

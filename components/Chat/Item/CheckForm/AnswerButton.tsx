@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { Colors } from "styles";
 
-export const ConfirmButton = styled.button`
+export const AnswerButton = styled.button`
   display: block;
   width: 100%;
   color: white;

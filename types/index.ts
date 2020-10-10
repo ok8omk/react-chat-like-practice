@@ -1,4 +1,4 @@
-export type Position =  "left" | "right" | "center";
+export type Position = "left" | "right" | "center";
 
 export type Option = {
   label: string;
@@ -7,22 +7,24 @@ export type Option = {
 
 export type TextProps = {
   text: string;
-}
+};
 
 export type RadioFormProps = {
-  text?: string;
+  text: string;
   name: string;
   options: Option[];
-}
+  onAnswer: (value: string) => void;
+};
 
 export type CheckFormProps = {
-  text?: string;
+  text: string;
   name: string;
   options: Option[];
-}
+  onAnswer: (values: string[]) => void;
+};
 
 export type Item = { position: Position } & (
-  ({ type: 'text' } & TextProps) |
-  ({ type: 'radio-form' } & RadioFormProps) |
-  ({ type: 'check-form' } & RadioFormProps)
-)
+  | ({ type: "text" } & TextProps)
+  | ({ type: "radio-form" } & RadioFormProps)
+  | ({ type: "check-form" } & CheckFormProps)
+);

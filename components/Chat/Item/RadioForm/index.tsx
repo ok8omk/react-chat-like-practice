@@ -1,24 +1,40 @@
 import React from "react";
+import type { RadioFormProps } from "types";
 import { Container } from "./Container";
 import { RadioButton } from "./RadioButton";
 import { Text } from "./Text";
-import { ConfirmButton } from "./ConfirmButton";
-import type { RadioFormProps } from "types";
+import { AnswerButton } from "./AnswerButton";
+import { useRadioForm } from "./useRadioForm";
 
 export const RadioForm: React.FC<RadioFormProps> = ({
   text,
   name,
   options,
+  onAnswer,
 }) => {
+  const [value, answered, onChange, onClickAnswerButton] = useRadioForm(
+    onAnswer
+  );
+
   return (
     <Container>
       {text && text.length > 0 && <Text>{text}</Text>}
-      {options.map(({ label, value }) => {
+      {options.map((option) => {
         return (
-          <RadioButton key={value} name={name} label={label} value={value} />
+          <RadioButton
+            key={option.value}
+            name={name}
+            label={option.label}
+            value={option.value}
+            checked={option.value === value}
+            onChange={onChange}
+            disabled={answered}
+          />
         );
       })}
-      <ConfirmButton>決定</ConfirmButton>
+      <AnswerButton onClick={onClickAnswerButton} disabled={answered}>
+        決定
+      </AnswerButton>
     </Container>
   );
 };
