@@ -9,7 +9,9 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": "./",
     "paths": {
-      "components/*": ["components/*"]
+      "components/*": ["components/*"],
+      "styles": ["styles/index.ts"],
+      "types": ["types/index.ts"]
     }
   }
 }

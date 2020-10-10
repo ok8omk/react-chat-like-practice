@@ -1,11 +1,24 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { Global, css } from "@emotion/core";
 import { Root } from "components/Root";
-import { ChatComponent } from "components/ChatComponent";
+import { Layout } from "components/Layout";
+import { ChatComponent } from "./ChatComponent";
 
 ReactDOM.render(
-  <Root>
-    <ChatComponent />
-  </Root>,
+  <>
+    <Global
+      styles={css`
+        body {
+          margin: 0;
+        }
+      `}
+    />
+    <Root>
+      <Layout>
+        <ChatComponent />
+      </Layout>
+    </Root>
+  </>,
   document.getElementById("root")
 );
