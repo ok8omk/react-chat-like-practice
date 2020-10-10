@@ -28,3 +28,5 @@ export type Item = { position: Position } & (
   | ({ type: "radio-form" } & RadioFormProps)
   | ({ type: "check-form" } & CheckFormProps)
 );
+
+export type Progress = "start" | "motivation" | "certification" | "end";

@@ -1,5 +1,5 @@
 import React from "react";
-import type { Item } from "types";
+import type { Item, Progress } from "types";
 import {
   Concierge,
   MOTIVATION_OPTIONS,
@@ -7,7 +7,7 @@ import {
 } from "./Concierge";
 import { User } from "./User";
 
-export const useChat = () => {
+export const useChat = (progress: Progress, proceedProgress: () => void) => {
   const user = React.useRef(new User());
   const concierge = React.useRef(new Concierge());
 
@@ -22,13 +22,24 @@ export const useChat = () => {
   }, []);
 
   React.useEffect(() => {
-    appendItems([
-      concierge.current.say("こんにちは！"),
-      concierge.current.hearMotivation((value) => {
+    switch (progress) {
+      case "start": {
         appendItems([
-          user.current.say(
-            MOTIVATION_OPTIONS[value as keyof typeof MOTIVATION_OPTIONS]
-          ),
+          concierge.current.say("こんにちは！"),
+          concierge.current.hearMotivation((value) => {
+            appendItem(
+              user.current.say(
+                MOTIVATION_OPTIONS[value as keyof typeof MOTIVATION_OPTIONS]
+              )
+            );
+            proceedProgress();
+          }),
+        ]);
+        break;
+      }
+
+      case "motivation": {
+        appendItem(
           concierge.current.hearCertifications((values) => {
             appendItem(
               user.current.say(
@@ -41,11 +52,18 @@ export const useChat = () => {
                   .join(",")
               )
             );
-          }),
-        ]);
-      }),
-    ]);
-  }, []);
+            proceedProgress();
+          })
+        );
+        break;
+      }
+
+      case "certification": {
+        appendItem(concierge.current.say("ご回答ありがとうございました。"));
+        break;
+      }
+    }
+  }, [progress]);
 
   return items;
 };

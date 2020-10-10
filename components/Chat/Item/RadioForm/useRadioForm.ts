@@ -13,7 +13,6 @@ export const useRadioForm = (
 
   const onChange = React.useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      console.log(event.currentTarget.value);
       setValue(event.target.value);
     },
     []

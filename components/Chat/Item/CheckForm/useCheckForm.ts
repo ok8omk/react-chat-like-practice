@@ -17,10 +17,7 @@ export const useCheckForm = (
       if (index === -1) {
         setValues([...values, value]);
       } else {
-        setValues([
-          ...values.slice(0, index - 1),
-          ...values.slice(index - 1, -1),
-        ]);
+        setValues(values.filter((oldValue) => oldValue !== value));
       }
     },
     [values]
