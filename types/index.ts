@@ -23,7 +23,7 @@ export type CheckFormProps = {
   onAnswer: (values: string[]) => void;
 };
 
-export type Item = { position: Position } & (
+export type Item = { position: Position; loadingEffect?: boolean } & (
   | ({ type: "text" } & TextProps)
   | ({ type: "radio-form" } & RadioFormProps)
   | ({ type: "check-form" } & CheckFormProps)
